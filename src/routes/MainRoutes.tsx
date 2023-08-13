@@ -6,7 +6,7 @@ import { Navigate, Route } from 'react-router-dom'
 const MainRoutes = () => {
   return (
     <RoutesWithNotFound>
-      <Route path="/" element={<Navigate to={ROUTES.orders.default} />} />
+      <Route path="/" element={<Navigate to={`${ROUTES.orders.default}`} />} />
       <Route path={ADMIN_ROUTE + '/*'} element={<AdminLayout />}>
         <Route path={ROUTES.orders.default} element={<NotFound />} />
       </Route>

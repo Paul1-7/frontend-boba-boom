@@ -1,11 +1,11 @@
-export const ADMIN_ROUTE = '/administracion'
+export const ADMIN_ROUTE = 'administracion'
 
 export const ROUTES = {
   orders: {
-    default: 'pedidos',
-    create: 'pedidos/agregar',
-    modify: 'pedidos/modificar',
-    detail: 'pedidos/detalle'
+    default: ADMIN_ROUTE + '/pedidos',
+    create: ADMIN_ROUTE + '/pedidos/agregar',
+    modify: ADMIN_ROUTE + '/pedidos/modificar',
+    detail: ADMIN_ROUTE + '/pedidos/detalle'
   },
   users: {
     default: 'usuarios',
