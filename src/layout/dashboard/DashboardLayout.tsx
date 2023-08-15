@@ -1,8 +1,9 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, Suspense, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Navbar, Sidebar } from "..";
 import { MENU_ITEMS_DASHBOARD } from "@/constants";
 import { useBreakpoints } from "@/hooks";
+import { Progress } from "@nextui-org/react";
 
 interface Props {
   children?: ReactNode;
@@ -30,15 +31,28 @@ const DashboardLayout = ({ children }: Props) => {
         isMenuOpen={isMenuOpen}
         matchedBreakpoint={isSSBreakpoint}
       />
+
       <section className="fixed left-0 right-0 top-0 mt-16 flex">
         <Sidebar
           menuItems={MENU_ITEMS_DASHBOARD}
           isMenuOpen={isMenuOpen}
           matchedBreakpoint={isSSBreakpoint}
         />
+
         <main className="scroll flex-grow overflow-y-auto">
-          {children}
-          <Outlet />
+          <Suspense
+            fallback={
+              <Progress
+                size="sm"
+                isIndeterminate
+                aria-label="Loading..."
+                className="max-w-md"
+              />
+            }
+          >
+            {children}
+            <Outlet />
+          </Suspense>
         </main>
       </section>
     </>

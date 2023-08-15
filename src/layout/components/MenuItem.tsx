@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 interface Props {
   menuItem: MenuItemI;
   isActive: boolean;
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
 const MenuItem = ({ menuItem, isActive, isOpen }: Props) => {
@@ -14,7 +14,8 @@ const MenuItem = ({ menuItem, isActive, isOpen }: Props) => {
   return (
     <Tooltip content={name} placement="right" isDisabled={!isOpen}>
       <LinkNextUI
-        className={`px4 flex w-full gap-4 overflow-hidden rounded-xl px-4 py-3 font-semibold text-whiteDark hover:bg-secondary hover:text-white hover:opacity-100  ${
+        className={`px4 flex w-full gap-4 overflow-hidden rounded-xl px-4 py-3 font-semibold text-whiteDark 
+        transition-background hover:bg-secondary hover:text-white hover:opacity-100  ${
           isActive && "bg-secondary"
         }`}
         size="md"

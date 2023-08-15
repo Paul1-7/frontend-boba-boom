@@ -1,7 +1,9 @@
 import { DASHBOARD_ROUTE, ROUTES } from "@/constants";
 import DashboardLayout from "@/layout/dashboard/DashboardLayout";
-import { NotFound, RoutesWithNotFound } from "@/pages";
+import { RoutesWithNotFound } from "@/pages";
+import { lazy } from "react";
 import { Navigate, Route } from "react-router-dom";
+const Orders = lazy(() => import("@/pages/orders/Orders"));
 
 const MainRoutes = () => {
   return (
@@ -13,7 +15,7 @@ const MainRoutes = () => {
         }
       />
       <Route path={DASHBOARD_ROUTE} element={<DashboardLayout />}>
-        <Route path={ROUTES.orders.default} element={<NotFound />} />
+        <Route path={ROUTES.orders.default} element={<Orders />} />
       </Route>
     </RoutesWithNotFound>
   );
