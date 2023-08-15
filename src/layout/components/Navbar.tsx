@@ -1,38 +1,44 @@
-import { useState } from 'react'
+import MenuItem from "./MenuItem";
 import {
-  Navbar,
+  Navbar as NavbarNextUI,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
+  Link as LinkNextUI,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem
-} from '@nextui-org/react'
+  NavbarMenuItem,
+} from "@nextui-org/react";
+import { useLocation } from "react-router-dom";
+import { MenuItem as MenuItemI } from "@/constants";
+import { isActivePathname } from "@/utils";
 
-export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+interface Props {
+  menuItems: MenuItemI[];
+  isMenuOpen: boolean;
+  handleOpen: (value: boolean) => void;
+  matchedBreakpoint: boolean;
+}
 
-  const menuItems = [
-    'Profile',
-    'Dashboard',
-    'Activity',
-    'Analytics',
-    'System',
-    'Deployments',
-    'My Settings',
-    'Team Settings',
-    'Help & Feedback',
-    'Log Out'
-  ]
+export default function Navbar({
+  menuItems,
+  handleOpen,
+  isMenuOpen,
+  matchedBreakpoint,
+}: Props) {
+  const { pathname } = useLocation();
+  const isOpen = matchedBreakpoint && isMenuOpen;
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen}>
+    <NavbarNextUI
+      onMenuOpenChange={handleOpen}
+      isMenuOpen={isOpen}
+      className={"bg-primary-blur justify-between text-whiteDark"}
+    >
       <NavbarContent>
         <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="sm:hidden"
-          isSelected={isMenuOpen}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          isSelected={isOpen}
         />
         <NavbarBrand>
           <p className="font-bold text-inherit">Boba Boom</p>
@@ -40,29 +46,19 @@ export default function App() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden md:flex">
-          <Link href="#">Iniciar sesión</Link>
+          <LinkNextUI href="#">Iniciar sesión</LinkNextUI>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="md:hidden">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? 'primary'
-                  : index === menuItems.length - 1
-                  ? 'danger'
-                  : 'foreground'
-              }
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+      <NavbarMenu className="bg-primary-blur sm:hidden">
+        {menuItems.map((menuItem) => {
+          const isActive = isActivePathname(pathname, menuItem.path);
+          return (
+            <NavbarMenuItem key={`${menuItem.name}`}>
+              <MenuItem menuItem={menuItem} isActive={isActive} />
+            </NavbarMenuItem>
+          );
+        })}
       </NavbarMenu>
-    </Navbar>
-  )
+    </NavbarNextUI>
+  );
 }
