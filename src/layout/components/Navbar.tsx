@@ -33,7 +33,7 @@ export default function Navbar({
     <NavbarNextUI
       onMenuOpenChange={handleOpen}
       isMenuOpen={isOpen}
-      className={"bg-primary-blur justify-between text-whiteDark"}
+      className={"bg-primary-blur justify-between text-whiteDark shadow-md"}
     >
       <NavbarContent>
         <NavbarMenuToggle

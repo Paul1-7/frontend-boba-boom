@@ -16,9 +16,10 @@ const Sidebar = ({ menuItems, isMenuOpen, matchedBreakpoint }: Props) => {
 
   return (
     <motion.aside
-      animate={{ width: isMenuOpen && !matchedBreakpoint ? "5rem" : "13rem" }}
+      initial={false}
+      animate={{ width: isMenuOpen && !matchedBreakpoint ? "5rem" : "12rem" }}
       transition={{ duration: 0.3 }}
-      className="h-screen-navbar scroll hidden overflow-y-auto ss:block"
+      className="h-screen-navbar scroll hidden overflow-y-auto  ss:block"
     >
       <Card
         className={`bg-primary-blur h-full w-full flex-col gap-2   rounded-none px-3 py-8`}

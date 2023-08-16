@@ -1,3 +1,4 @@
-export * from "./MainDashboardContainer";
+export * from "./dashboardContent";
+export * from "./dataTable";
 export * from "./routes";
 export * from "./menuDashboard";

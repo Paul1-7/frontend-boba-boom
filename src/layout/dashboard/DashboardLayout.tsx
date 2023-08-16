@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }: Props) => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
   };
 
-  const isSSBreakpoint =
+  const matchedBreakpoint =
     currentBreakpoint === SS.name ||
     currentBreakpoint === XS.name ||
     currentBreakpoint === none.name;
@@ -29,14 +29,14 @@ const DashboardLayout = ({ children }: Props) => {
         menuItems={MENU_ITEMS_DASHBOARD}
         handleOpen={handleOpen}
         isMenuOpen={isMenuOpen}
-        matchedBreakpoint={isSSBreakpoint}
+        matchedBreakpoint={matchedBreakpoint}
       />
 
       <section className="fixed left-0 right-0 top-0 mt-16 flex">
         <Sidebar
           menuItems={MENU_ITEMS_DASHBOARD}
           isMenuOpen={isMenuOpen}
-          matchedBreakpoint={isSSBreakpoint}
+          matchedBreakpoint={matchedBreakpoint}
         />
 
         <main className="scroll flex-grow overflow-y-auto">
