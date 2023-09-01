@@ -1,10 +1,11 @@
 import {
   CurrencyCell,
-  CurrencyCellProps,
+  CellProps,
   DataTableRenderStrategy,
   RenderStrategy,
   StateCell,
   StateCellProps,
+  DefaultCell,
 } from "@/components";
 
 export const renderStrategies: Record<
@@ -13,10 +14,10 @@ export const renderStrategies: Record<
   RenderStrategy<any>
 > = {
   default: {
-    render: (props: CurrencyCellProps) => <CurrencyCell {...props} />,
+    render: (props: CellProps) => <DefaultCell {...props} />,
   },
   currency: {
-    render: (props: CurrencyCellProps) => <CurrencyCell {...props} />,
+    render: (props: CellProps) => <CurrencyCell {...props} />,
   },
   states: {
     render: (props: StateCellProps) => <StateCell {...props} />,

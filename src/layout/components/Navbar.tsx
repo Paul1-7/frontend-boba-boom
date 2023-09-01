@@ -36,10 +36,7 @@ export default function Navbar({
       className={"bg-primary-blur justify-between text-whiteDark shadow-md"}
     >
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          isSelected={isOpen}
-        />
+        <NavbarMenuToggle aria-label={isOpen ? "Close menu" : "Open menu"} />
         <NavbarBrand>
           <p className="font-bold text-inherit">Boba Boom</p>
         </NavbarBrand>

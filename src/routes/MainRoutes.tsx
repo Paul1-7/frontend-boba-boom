@@ -4,6 +4,8 @@ import { RoutesWithNotFound } from "@/pages";
 import { lazy } from "react";
 import { Navigate, Route } from "react-router-dom";
 const Orders = lazy(() => import("@/pages/orders/Orders"));
+const Menus = lazy(() => import("@/pages/menus/Menus"));
+const Flavours = lazy(() => import("@/pages/flavours/Flavours"));
 
 const MainRoutes = () => {
   return (
@@ -16,6 +18,8 @@ const MainRoutes = () => {
       />
       <Route path={DASHBOARD_ROUTE} element={<DashboardLayout />}>
         <Route path={ROUTES.orders.default} element={<Orders />} />
+        <Route path={ROUTES.menus.default} element={<Menus />} />
+        <Route path={ROUTES.flavours.default} element={<Flavours />} />
       </Route>
     </RoutesWithNotFound>
   );

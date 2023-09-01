@@ -8,8 +8,32 @@ export const COLUMNS_DATA_TABLE: DataTableColumnsMapping = {
       type: "currency",
     },
     {
-      field: "estado",
-      header: "Estado",
+      field: "total",
+      header: "total",
+      type: "states",
+    },
+  ],
+  menus: [
+    {
+      field: "nombre",
+      header: "Nombre",
+      type: "default",
+    },
+  ],
+  flavours: [
+    {
+      field: "name",
+      header: "Nombre",
+      type: "default",
+    },
+    {
+      field: "price",
+      header: "Precio",
+      type: "currency",
+    },
+    {
+      field: "type",
+      header: "Tipo",
       type: "states",
     },
   ],
@@ -22,4 +46,26 @@ export const TABLE_STATES = {
     { name: "Preparado", color: "primary" },
     { name: "Completado", color: "success" },
   ],
+  flavoursType: {
+    FRUTALES: {
+      name: "FRUTALES",
+      color: "default",
+    },
+    ESPECIALES: {
+      name: "FRUTALES",
+      color: "default",
+    },
+    "DE LA CASA": {
+      name: "FRUTALES",
+      color: "default",
+    },
+    CUBIERTA: {
+      name: "FRUTALES",
+      color: "default",
+    },
+    TOPPING: {
+      name: "FRUTALES",
+      color: "default",
+    },
+  },
 };
