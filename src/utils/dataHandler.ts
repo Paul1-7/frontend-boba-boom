@@ -16,3 +16,8 @@ export const debounce = (fn: (...args: unknown[]) => void, delay: number) => {
     }, delay);
   };
 };
+
+export const formatCurrencyToBOB = (value: number) =>
+  new Intl.NumberFormat("es-BO", { style: "currency", currency: "BOB" }).format(
+    value,
+  );

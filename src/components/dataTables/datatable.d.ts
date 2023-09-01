@@ -1,6 +1,6 @@
 import { ChipVariantProps } from "@nextui-org/react";
 
-export type CellState = {
+export type CellStateChip = {
   name: string;
   color: ChipVariantProps["color"];
 };
@@ -22,10 +22,10 @@ interface RenderStrategy<T> {
 }
 
 export interface StateCellProps {
-  complement: CellState[];
+  complement: CellStateChip[] | { [key: string]: CellStateChip };
   value: unknown;
 }
 
-export interface CurrencyCellProps {
+export interface CellProps {
   value: unknown;
 }
