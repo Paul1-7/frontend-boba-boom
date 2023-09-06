@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <SocketProvider>
           <QueryClientProvider client={queryClient}>
             {/* <ErrorProvider> */}
-            <Toaster richColors />
+            <Toaster richColors visibleToasts={1}/>
             <App />
             {/* </ErrorProvider> */}
           </QueryClientProvider>

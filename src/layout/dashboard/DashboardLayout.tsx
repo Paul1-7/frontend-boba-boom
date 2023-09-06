@@ -1,27 +1,27 @@
-import { ReactNode, Suspense, useState } from "react";
-import { Outlet } from "react-router-dom";
-import { Navbar, Sidebar } from "..";
-import { MENU_ITEMS_DASHBOARD } from "@/constants";
-import { useBreakpoints } from "@/hooks";
-import { Progress } from "@nextui-org/react";
+import { ReactNode, Suspense, useState } from 'react'
+import { Outlet } from 'react-router-dom'
+import { Navbar, Sidebar } from '..'
+import { MENU_ITEMS_DASHBOARD } from '@/constants'
+import { useBreakpoints } from '@/hooks'
+import { Progress } from '@nextui-org/react'
 
 interface Props {
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 const DashboardLayout = ({ children }: Props) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { currentBreakpoint, breakpoints } = useBreakpoints();
-  const { XS, SS, none } = breakpoints;
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { currentBreakpoint, breakpoints } = useBreakpoints()
+  const { XS, SS, none } = breakpoints
 
   const handleOpen = () => {
-    setIsMenuOpen((isMenuOpen) => !isMenuOpen);
-  };
+    setIsMenuOpen((isMenuOpen) => !isMenuOpen)
+  }
 
   const matchedBreakpoint =
     currentBreakpoint === SS.name ||
     currentBreakpoint === XS.name ||
-    currentBreakpoint === none.name;
+    currentBreakpoint === none.name
 
   return (
     <>
@@ -46,7 +46,7 @@ const DashboardLayout = ({ children }: Props) => {
                 size="sm"
                 isIndeterminate
                 aria-label="Loading..."
-                className="max-w-md"
+                className="w-full"
               />
             }
           >
@@ -56,7 +56,7 @@ const DashboardLayout = ({ children }: Props) => {
         </main>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default DashboardLayout;
+export default DashboardLayout

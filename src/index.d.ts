@@ -12,11 +12,11 @@ export interface OrderDetailI {
 }
 
 export interface FlavourI {
-  id: string;
+  id?: string;
   type: string;
   name: string;
   idMenu: string;
-  price: number;
+  price: number | string;
 }
 
 export interface MenuI {

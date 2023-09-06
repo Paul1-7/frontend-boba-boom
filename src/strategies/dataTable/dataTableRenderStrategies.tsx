@@ -6,6 +6,8 @@ import {
   StateCell,
   StateCellProps,
   DefaultCell,
+  ActionCellProps,
+  ActionCell,
 } from "@/components";
 
 export const renderStrategies: Record<
@@ -22,4 +24,8 @@ export const renderStrategies: Record<
   states: {
     render: (props: StateCellProps) => <StateCell {...props} />,
   },
+  actions: {
+    render: (props: ActionCellProps) => <ActionCell {...props} />,
+  },
+  
 };

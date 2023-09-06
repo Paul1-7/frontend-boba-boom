@@ -1,1 +1,2 @@
-export * from "./flavoursService";
+export * from "./flavourService";
+export * from "./menuService";

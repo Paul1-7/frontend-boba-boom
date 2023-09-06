@@ -1,5 +1,5 @@
-import { DASHBOARD_ROUTE, ROUTES } from "@/constants";
-import { Link } from "react-router-dom";
+import { ROUTES } from '@/constants'
+import { Link } from 'react-router-dom'
 
 const Notfound = () => {
   return (
@@ -17,7 +17,7 @@ const Notfound = () => {
         <Link
           className="flex items-center space-x-2 rounded bg-blue-600 px-4 py-2 text-gray-100 transition duration-150 hover:bg-blue-700"
           title="Return Home"
-          to={`${DASHBOARD_ROUTE}/${ROUTES.orders.default}`}
+          to={`${ROUTES.orders.default}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -219,7 +219,7 @@ const Notfound = () => {
         </svg>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Notfound;
+export default Notfound

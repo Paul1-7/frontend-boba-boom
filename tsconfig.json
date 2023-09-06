@@ -24,6 +24,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "prettier.config.cjs"],
+  "include": ["src", "prettierrc.json"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

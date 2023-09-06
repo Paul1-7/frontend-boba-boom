@@ -1,4 +1,5 @@
 import { ChipVariantProps } from "@nextui-org/react";
+import { ReactElement } from "react";
 
 export type CellStateChip = {
   name: string;
@@ -15,7 +16,7 @@ export type ColumnsDataTable = {
   type: DataTableRenderStrategy;
 };
 
-export type DataTableRenderStrategy = "currency" | "states" | "default";
+export type DataTableRenderStrategy = "currency" | "states" | "default" | "actions";
 
 interface RenderStrategy<T> {
   render: (props: T) => React.ReactNode;
@@ -23,6 +24,21 @@ interface RenderStrategy<T> {
 
 export interface StateCellProps {
   complement: CellStateChip[] | { [key: string]: CellStateChip };
+  value: unknown;
+}
+
+interface ItemDropdown {
+  label:string,
+  key:string
+  icon?: ReactElement,
+}
+
+
+export interface ActionCellProps {
+  complement: {
+    items: ItemDropdown[],
+    onAction: (key: string, value:unknown) => void
+  }
   value: unknown;
 }
 

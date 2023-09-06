@@ -1,28 +1,28 @@
-export const DASHBOARD_ROUTE = "administracion";
+export const DASHBOARD_ROUTE = '/administracion'
 
 export const ROUTES = {
   orders: {
-    default: "pedidos",
-    create: "pedidos/agregar",
-    modify: "pedidos/modificar",
-    detail: "pedidos/detalle",
+    default: DASHBOARD_ROUTE + '/pedidos',
+    create: DASHBOARD_ROUTE + '/pedidos/agregar',
+    modify: DASHBOARD_ROUTE + '/pedidos/modificar',
+    detail: DASHBOARD_ROUTE + '/pedidos/detalle'
   },
   menus: {
-    default: "menus",
-    create: "menus/agregar",
-    modify: "menus/modificar",
+    default: DASHBOARD_ROUTE + '/menus',
+    create: DASHBOARD_ROUTE + '/menus/agregar',
+    modify: DASHBOARD_ROUTE + '/menus/modificar'
   },
   flavours: {
-    default: "sabores",
-    create: "sabores/agregar",
-    modify: "sabores/modificar",
+    default: DASHBOARD_ROUTE + '/sabores',
+    create: DASHBOARD_ROUTE + '/sabores/agregar',
+    modify: DASHBOARD_ROUTE + '/sabores/modificar'
   },
   users: {
-    default: "usuarios",
-    create: "usuarios/agregar",
-    modify: "usuarios/modificar",
+    default: DASHBOARD_ROUTE + '/usuarios',
+    create: DASHBOARD_ROUTE + '/usuarios/agregar',
+    modify: DASHBOARD_ROUTE + '/usuarios/modificar'
   },
   auth: {
-    login: "/auth/login",
-  },
-};
+    login: DASHBOARD_ROUTE + '/auth/login'
+  }
+}
