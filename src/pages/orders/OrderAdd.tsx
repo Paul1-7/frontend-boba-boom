@@ -34,9 +34,6 @@ const OrderAdd = () => {
     mutate(data as OrderWithDetails)
   }
 
-  console.log(methods.formState.errors)
-  console.log(methods.watch())
-
   return (
     <MainDashboardContainer content={DASHBOARD_CONTENT.orders.add}>
       <Form formMethods={methods} onSubmit={handleSubmit}>

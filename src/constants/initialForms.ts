@@ -10,10 +10,18 @@ export const initialFormFlavour: FlavourI = {
 export const initialFormBobaOrder = {
   idOrder: '',
   idMenu: '',
-  idShake: '',
+  idShake: new Set(),
   idBoba: new Set(),
-  price: '',
-  subtotal: ''
+  idPrice: new Set()
+}
+
+export const initialFormWaffleeOrder = {
+  idOrder: '',
+  idMenu: '',
+  idFruit: new Set(),
+  idCoating: new Set(),
+  idTopping: new Set(),
+  idPrice: new Set()
 }
 
 export const initialFormOrder: OrderWithDetails = {

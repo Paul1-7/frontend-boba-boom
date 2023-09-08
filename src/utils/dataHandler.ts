@@ -46,3 +46,19 @@ export const sortedItems = <T extends Record<K, string>, K extends keyof T>(
 ): T[] => {
   return array.slice().sort((a, b) => a[label].localeCompare(b[label]))
 }
+
+export type GroupedObject = { [key: string]: { count: number } }
+
+export function groupArrayElements(arr: string[]): GroupedObject {
+  return arr.reduce((result, item) => {
+    const key = item
+
+    if (!result[key]) {
+      result[key] = { count: 0 }
+    }
+
+    result[key].count++
+
+    return result
+  }, {} as GroupedObject)
+}

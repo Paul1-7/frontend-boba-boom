@@ -5,22 +5,24 @@ import { Button } from '@nextui-org/react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 
 interface Props {
-  shakeFlavours: Item<FlavourI>[] | undefined
-  bobasFlavours: Item<FlavourI>[] | undefined
+  fruitFlavours: Item<FlavourI>[] | undefined
+  coatingFlavours: Item<FlavourI>[] | undefined
+  toppingFlavours: Item<FlavourI>[] | undefined
   prices: Item<PriceMenuI>[] | undefined
-  handleDecrementBobas: () => void
+  handleDecrementWaffle: () => void
 }
 
-const MenuBoba = ({
-  shakeFlavours = [],
-  bobasFlavours = [],
+const MenuWafflee = ({
+  fruitFlavours = [],
+  coatingFlavours = [],
+  toppingFlavours = [],
   prices = [],
-  handleDecrementBobas
+  handleDecrementWaffle
 }: Props) => {
   const { control } = useFormContext()
   const { fields, remove } = useFieldArray({
     control,
-    name: 'bobaDetail'
+    name: 'waffleeDetail'
   })
 
   return (
@@ -37,7 +39,7 @@ const MenuBoba = ({
               color="danger"
               onClick={() => {
                 remove(idx)
-                handleDecrementBobas()
+                handleDecrementWaffle()
               }}
             >
               <TrashIc />
@@ -45,26 +47,32 @@ const MenuBoba = ({
             <div className="w-full flex flex-col sm:gap-4  ">
               <div className="flex w-full flex-wrap sm:flex-nowrap sm:mb-0 sm:gap-4">
                 <Select
-                  label="Sabor de malteada"
-                  name={`bobaDetail.${idx}.idShake`}
-                  items={shakeFlavours}
+                  label="Elije la fruta"
+                  name={`waffleeDetail.${idx}.idFruit`}
+                  items={fruitFlavours}
                   isDataPath
                 />
                 <Select
-                  label="Sabor de bobas"
-                  name={`bobaDetail.${idx}.idBoba`}
-                  items={bobasFlavours}
-                  selectionMode="multiple"
+                  label="Elije la cubierta "
+                  name={`waffleeDetail.${idx}.idCoating`}
+                  items={coatingFlavours}
                   isDataPath
-                  isObjectValue
                 />
               </div>
               <div className="flex w-full flex-wrap sm:flex-nowrap mb-6 sm:mb-0 gap-4">
                 <Select
+                  label="Elije el topping "
+                  name={`waffleeDetail.${idx}.idTopping`}
+                  items={toppingFlavours}
+                  isDataPath
+                  isObjectValue
+                />
+                <Select
                   label="Tamaño"
-                  name={`bobaDetail.${idx}.idPrice`}
+                  name={`waffleeDetail.${idx}.idPrice`}
                   items={prices}
                   isDataPath
+                  isObjectValue
                 />
               </div>
             </div>
@@ -75,4 +83,4 @@ const MenuBoba = ({
   )
 }
 
-export default MenuBoba
+export default MenuWafflee

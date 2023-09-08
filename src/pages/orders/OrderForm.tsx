@@ -1,11 +1,14 @@
-import { CounterButton, Input, Select } from '@/components'
+import { CounterButton, Input } from '@/components'
 import { ROUTES } from '@/constants'
-import { Accordion, AccordionItem, Button } from '@nextui-org/react'
+import { Accordion, AccordionItem, Button, Divider } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 import { MenuBoba } from '..'
 import { useCounterOrder } from '@/hooks'
 import { UseQueryResult } from '@tanstack/react-query'
 import { FlavourI, PriceMenuI } from '@/index'
+import MenuWafflee from './MenuWaffle'
+import { useFormContext } from 'react-hook-form'
+import { formatCurrencyToBOB } from '@/utils'
 
 interface Props {
   flavours: UseQueryResult<FlavourI[], unknown>
@@ -14,19 +17,23 @@ interface Props {
   isLoadingData?: boolean
 }
 
-const FlavourForm = ({
-  isLoading,
-  isLoadingData,
-  flavours,
-  priceMenu
-}: Props) => {
+const FlavourForm = ({ isLoading, flavours, priceMenu }: Props) => {
+  const { watch } = useFormContext()
+  const total = watch('order.total')
+
   const {
     counters,
     handleDecrementBobas,
     handleIncrementBobas,
     bobaShakeFlavours,
     bobaFlavours,
-    bobaPrices
+    bobaPrices,
+    coatingFlavours,
+    fruitsFlavours,
+    handleDecrementWafflee,
+    handleIncrementWafflee,
+    toppingFlavours,
+    waffleePrices
   } = useCounterOrder({
     flavoursData: flavours,
     priceMenuData: priceMenu
@@ -34,7 +41,16 @@ const FlavourForm = ({
 
   return (
     <>
-      <Accordion variant="splitted">
+      <div className="w-full flex flex-col gap-4 p-4">
+        <div className="flex w-full flex-wrap sm:flex-nowrap mb-6 sm:mb-0 gap-4">
+          <Input
+            label="Nombre del cliente"
+            name={'order.customer'}
+            isDataPath
+          />
+        </div>
+      </div>
+      <Accordion variant="splitted" className="mb-4">
         <AccordionItem
           as={'section'}
           key="1"
@@ -55,30 +71,32 @@ const FlavourForm = ({
             handleDecrementBobas={handleDecrementBobas}
           />
         </AccordionItem>
-        {/* <AccordionItem
+        <AccordionItem
           as={'section'}
           key="2"
-          aria-label="Accordion 1"
-          title="Waffles boo"
-          startContent={<CounterButton getCounter={handleCounterWafflees} />}
+          aria-label="Seccion para menu wafflee"
+          title="Boba wafflee"
+          startContent={
+            <CounterButton
+              handleDecrement={handleDecrementWafflee}
+              handleIncrement={handleIncrementWafflee}
+              value={counters.bobaWaffles}
+            />
+          }
         >
-          contend
-        </AccordionItem> */}
-      </Accordion>
-      <div className="w-full flex flex-col gap-4">
-        <div className="flex w-full flex-wrap sm:flex-nowrap mb-6 sm:mb-0 gap-4">
-          <Input label="Nombre" name={'name'} />
-          <Select
-            label="Menu"
-            name={'idMenu'}
-            items={[]}
-            isLoading={isLoadingData}
+          <MenuWafflee
+            prices={waffleePrices}
+            fruitFlavours={fruitsFlavours}
+            coatingFlavours={coatingFlavours}
+            toppingFlavours={toppingFlavours}
+            handleDecrementWaffle={handleDecrementWafflee}
           />
-        </div>
-        <div className="flex w-full flex-wrap sm:flex-nowrap mb-6 sm:mb-0 gap-4">
-          <Input label="Precio" name={'price'} endContent="Bs." />
-        </div>
-      </div>
+        </AccordionItem>
+      </Accordion>
+      <Divider className=" my-2" />
+      <p className="text-2xl px-2 font-semibold ">{`Total: ${formatCurrencyToBOB(
+        total
+      )}`}</p>
       <div className="flex flow-row gap-2 justify-center mt-4">
         <Button color="warning" as={Link} to={ROUTES.flavours.default}>
           Cancelar

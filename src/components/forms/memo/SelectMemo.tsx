@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid'
 import { Controller } from 'react-hook-form'
 import { objectByString } from '@/utils/dataHandler'
 import compare from 'just-compare'
-import { Select, SelectItem } from '@nextui-org/react'
+import { Select, SelectItem, SelectionMode } from '@nextui-org/react'
 import { SelectProps } from '../types'
 
 const SelectMemo = memo(
@@ -15,13 +15,24 @@ const SelectMemo = memo(
     isDataPath,
     methods,
     selectionMode,
-    isObjectValue,
     items = [],
     ...others
   }: SelectProps<T>) => {
     const error = methods?.formState?.errors ?? {}
 
     const errorValue = isDataPath ? objectByString(error, name) : error[name]
+
+    const handleSelectionChange = (
+      e: React.ChangeEvent<HTMLSelectElement>,
+      onChange: (...event: any[]) => void,
+      selectionMode: SelectionMode | undefined
+    ) => {
+      const value = selectionMode
+        ? new Set(e.target.value.split(','))
+        : new Set([e.target.value])
+
+      onChange(value)
+    }
 
     return (
       <Controller
@@ -35,7 +46,9 @@ const SelectMemo = memo(
               label={label}
               validationState={errorValue?.message ? 'invalid' : 'valid'}
               selectionMode={selectionMode}
-              onSelectionChange={onChange}
+              onChange={(e) =>
+                handleSelectionChange(e, onChange, selectionMode)
+              }
               onBlur={onBlur}
               errorMessage={errorValue?.message}
               selectedKeys={value}
@@ -48,9 +61,7 @@ const SelectMemo = memo(
                 return (
                   <SelectItem
                     key={String(item.value)}
-                    value={
-                      isObjectValue ? JSON.stringify(item) : String(item.value)
-                    }
+                    value={String(item.value)}
                   >
                     {String(item.label)}
                   </SelectItem>
