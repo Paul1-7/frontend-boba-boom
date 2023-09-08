@@ -1,30 +1,28 @@
-import { ReactNode, useEffect } from "react";
-import { createContext } from "react";
+import { ReactNode, useContext, useEffect } from 'react'
+import { createContext } from 'react'
 
-// import { AuthContext } from "../auth/AuthContext";
-// import { ChatContext } from "./chat/ChatContext";
-// import { useSocket } from "../hooks/useSocket";
-
-import { useSockets } from "@/hooks";
-import { BASE_URL } from "@/config";
-import { SOCKETS_EVENTS } from "@/constants";
-import { Socket } from "socket.io-client";
+import { useSockets } from '@/hooks'
+import { BASE_URL } from '@/config'
+import { SOCKETS_EVENTS } from '@/constants'
+import { Socket } from 'socket.io-client'
+import { OrderContext } from '.'
+import { OrderI } from '..'
 
 interface ContextProps {
-  socket: Socket | undefined;
-  online: boolean | undefined;
+  socket: Socket | undefined
+  online: boolean | undefined
 }
 
-export const SocketContext = createContext<ContextProps | null>(null);
+export const SocketContext = createContext<ContextProps | null>(null)
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode
 }
 export const SocketProvider = ({ children }: Props) => {
   const { socket, online, conectarSocket, desconectarSocket } =
-    useSockets(BASE_URL);
+    useSockets(BASE_URL)
   // const { auth } = useContext(AuthContext);
-  // const { dispatch } = useContext(ChatContext);
+  const { dispatch } = useContext(OrderContext) ?? {}
 
   // useEffect(() => {
   //   if (auth.logged) {
@@ -40,14 +38,15 @@ export const SocketProvider = ({ children }: Props) => {
 
   // Escuchar los cambios en los usuarios conectados
   useEffect(() => {
-    socket?.on(SOCKETS_EVENTS.MENUS_LIST, (usuarios) => {
-      console.log("TCL: SocketProvider -> usuarios", usuarios);
-      // dispatch({
-      //   type: types.usuariosCargados,
-      //   payload: usuarios,
-      // });
-    });
-  }, [socket]);
+    socket?.on(SOCKETS_EVENTS.ORDERS_LIST, (usuarios: OrderI[]) => {
+      if (!dispatch) return
+
+      dispatch({
+        type: SOCKETS_EVENTS.ORDERS_LIST,
+        payload: usuarios
+      })
+    })
+  }, [socket])
 
   // useEffect(() => {
   //   socket?.on("mensaje-personal", (mensaje) => {
@@ -63,5 +62,5 @@ export const SocketProvider = ({ children }: Props) => {
     <SocketContext.Provider value={{ socket, online }}>
       {children}
     </SocketContext.Provider>
-  );
-};
+  )
+}

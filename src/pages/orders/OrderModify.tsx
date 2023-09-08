@@ -1,22 +1,27 @@
 import { DASHBOARD_CONTENT, ROUTES, initialFormFlavour } from '@/constants'
 import { MainDashboardContainer } from '@/layout'
-import FlavourForm from './FlavourForm'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { createFlavour, listMenus } from '@/services'
+import { getFlavourById, listMenus, modifyFlavour } from '@/services'
 import { FlavourI } from '@/index'
 import { useForm } from '@/hooks'
 import { flavourSchema } from '@/schemas'
 import { Form } from '@/components'
 import { FieldValues, SubmitHandler } from 'react-hook-form'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { typesList } from '@/apis'
 
-const FlavourAdd = () => {
-  const { mutate, isLoading, isSuccess, isError } = useMutation({
-    mutationFn: createFlavour
-  })
+const FlavourModify = () => {
+  const { id } = useParams()
+  const { mutate, isLoading, isSuccess, isError } = useMutation(
+    async (data: FlavourI) => await modifyFlavour(data, id)
+  )
 
   const typeData = typesList()
+
+  const flavourData = useQuery({
+    queryKey: ['getFlavourById'],
+    queryFn: () => getFlavourById(id)
+  })
 
   const menuData = useQuery({
     queryKey: ['listMenus'],
@@ -25,7 +30,10 @@ const FlavourAdd = () => {
 
   const { methods } = useForm({
     initialForm: initialFormFlavour,
-    schema: flavourSchema
+    schema: flavourSchema,
+    shouldLoadData: true,
+    dataTarget: flavourData,
+    onDataLoad: [flavourData, menuData]
   })
 
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -35,16 +43,16 @@ const FlavourAdd = () => {
   return (
     <MainDashboardContainer content={DASHBOARD_CONTENT.flavours.add}>
       <Form formMethods={methods} onSubmit={handleSubmit}>
-        <FlavourForm
+        {/* <FlavourForm
           menus={menuData.data}
           isLoading={isLoading}
           isLoadingData={menuData.isLoading}
           types={typeData}
-        />
+        /> */}
       </Form>
       {isSuccess && !isError && <Navigate to={ROUTES.flavours.default} />}
     </MainDashboardContainer>
   )
 }
 
-export default FlavourAdd
+export default FlavourModify

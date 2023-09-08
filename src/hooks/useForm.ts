@@ -36,10 +36,6 @@ export const useForm = ({
     )
       return
 
-    onDataLoad.forEach(({ data }) => {
-      console.log(data)
-    })
-
     methods.reset(dataTarget?.data)
     loadOnce.current = false
   }, [dataTarget?.data, onDataLoad, shouldLoadData])

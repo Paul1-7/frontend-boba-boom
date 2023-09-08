@@ -1,26 +1,33 @@
-import { ROUTES } from ".";
+import { ROUTES } from '.'
 
 export const DASHBOARD_CONTENT = {
   orders: {
-    default: { title: "Lista de pedidos", button: "agregar pedido" },
+    default: {
+      title: 'Lista de pedidos',
+      button: 'agregar pedido',
+      to: ROUTES.orders.create
+    },
     add: {
-      title: "Creación de pedidos",
+      title: 'Creación de pedidos'
     },
     modify: {
-      title: "Modificación de pedidos",
-    },
+      title: 'Modificación de pedidos'
+    }
   },
   flavours: {
-    default: { title: "Lista de sabores", button: "agregar sabor" ,
-      to:ROUTES.flavours.create},
+    default: {
+      title: 'Lista de sabores',
+      button: 'agregar sabor',
+      to: ROUTES.flavours.create
+    },
     add: {
-      title: "Creación de sabores",
+      title: 'Creación de sabores'
     },
     modify: {
-      title: "Modificación de sabores",
-    },
+      title: 'Modificación de sabores'
+    }
   },
   menus: {
-    default: { title: "Lista de menus" },
-  },
-};
+    default: { title: 'Lista de menus' }
+  }
+}

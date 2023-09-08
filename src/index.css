@@ -31,4 +31,8 @@
   .h-screen-navbar {
     height: calc(100vh - 4rem);
   }
+
+  .max-h-screen-navbar {
+    height: calc(100vh - 4rem);
+  }
 }

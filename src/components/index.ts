@@ -1,3 +1,4 @@
+export { default as CounterButton } from './CounterButton'
 export { default as DialogConfirmation } from './DialogConfirmation'
 export { default as DataTable } from './dataTables/DataTable'
 export { default as ActionCell } from './dataTables/cells/ActionCell'

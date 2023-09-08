@@ -1,2 +1,4 @@
-export * from "./menusAdapter";
-export * from "./typesAdapter";
+export * from './flavourAdapter'
+export * from './menusAdapter'
+export * from './pricesMenu'
+export * from './typesAdapter'

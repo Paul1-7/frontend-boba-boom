@@ -5,6 +5,7 @@ import { lazy } from 'react'
 import { Navigate, Route } from 'react-router-dom'
 
 const Orders = lazy(() => import('@/pages/orders/Orders'))
+const OrderAdd = lazy(() => import('@/pages/orders/OrderAdd'))
 const Menus = lazy(() => import('@/pages/menus/Menus'))
 
 //flavours
@@ -18,6 +19,7 @@ const MainRoutes = () => {
       <Route path="/" element={<Navigate to={`${ROUTES.orders.default}`} />} />
       <Route path={DASHBOARD_ROUTE} element={<DashboardLayout />}>
         <Route path={ROUTES.orders.default} element={<Orders />} />
+        <Route path={ROUTES.orders.create} element={<OrderAdd />} />
         <Route path={ROUTES.menus.default} element={<Menus />} />
         {/* flavours */}
 

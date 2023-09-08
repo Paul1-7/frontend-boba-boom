@@ -16,7 +16,6 @@ const FlavourForm = <T, R>({
   isLoading,
   isLoadingData
 }: Props<T, R>) => {
-  console.log('TCL: isLoadingData', isLoadingData)
   return (
     <>
       <div className="w-full flex flex-col gap-4">

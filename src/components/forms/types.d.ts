@@ -21,6 +21,7 @@ export interface Item<T> {
 interface SelectProps<T> extends SelectPropsNext {
   name: string
   isDataPath?: boolean
+  isObjectValue?: boolean
   label: string
   methods?: UseFormReturn<FieldValues> | undefined
   items: undefined | Item<T>[] | object[] | T[]

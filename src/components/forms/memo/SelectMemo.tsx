@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { memo } from 'react'
 import { v4 as uuid } from 'uuid'
 
@@ -13,6 +14,8 @@ const SelectMemo = memo(
     label,
     isDataPath,
     methods,
+    selectionMode,
+    isObjectValue,
     items = [],
     ...others
   }: SelectProps<T>) => {
@@ -25,18 +28,17 @@ const SelectMemo = memo(
         name={name}
         control={methods?.control}
         render={({ field: { onChange, onBlur, value } }) => {
-          console.log('TCL: field', [value])
-
           return (
             <Select
               size="sm"
               variant="underlined"
               label={label}
               validationState={errorValue?.message ? 'invalid' : 'valid'}
-              onChange={onChange}
+              selectionMode={selectionMode}
+              onSelectionChange={onChange}
               onBlur={onBlur}
               errorMessage={errorValue?.message}
-              selectedKeys={value ? [value] : []}
+              selectedKeys={value}
               {...others}
             >
               {(items as object[]).map((item) => {
@@ -46,7 +48,9 @@ const SelectMemo = memo(
                 return (
                   <SelectItem
                     key={String(item.value)}
-                    value={String(item.value)}
+                    value={
+                      isObjectValue ? JSON.stringify(item) : String(item.value)
+                    }
                   >
                     {String(item.label)}
                   </SelectItem>
