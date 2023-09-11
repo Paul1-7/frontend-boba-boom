@@ -6,7 +6,9 @@ import { Navigate, Route } from 'react-router-dom'
 
 const Orders = lazy(() => import('@/pages/orders/Orders'))
 const OrderAdd = lazy(() => import('@/pages/orders/OrderAdd'))
-const Menus = lazy(() => import('@/pages/menus/Menus'))
+const OrderModify = lazy(() => import('@/pages/orders/OrderModify'))
+const OrderDetail = lazy(() => import('@/pages/orders/OrderDetail'))
+const Sales = lazy(() => import('@/pages/reports/SalesReport'))
 
 //flavours
 const Flavours = lazy(() => import('@/pages/flavours/Flavours'))
@@ -20,7 +22,9 @@ const MainRoutes = () => {
       <Route path={DASHBOARD_ROUTE} element={<DashboardLayout />}>
         <Route path={ROUTES.orders.default} element={<Orders />} />
         <Route path={ROUTES.orders.create} element={<OrderAdd />} />
-        <Route path={ROUTES.menus.default} element={<Menus />} />
+        <Route path={ROUTES.orders.modify + '/:id'} element={<OrderModify />} />
+        <Route path={ROUTES.orders.detail + '/:id'} element={<OrderDetail />} />
+        <Route path={ROUTES.reports.order} element={<Sales />} />
         {/* flavours */}
 
         <Route path={ROUTES.flavours.default} element={<Flavours />} />

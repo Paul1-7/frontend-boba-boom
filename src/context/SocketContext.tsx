@@ -19,8 +19,7 @@ interface Props {
   children: ReactNode
 }
 export const SocketProvider = ({ children }: Props) => {
-  const { socket, online, conectarSocket, desconectarSocket } =
-    useSockets(BASE_URL)
+  const { socket, online } = useSockets(BASE_URL)
   // const { auth } = useContext(AuthContext);
   const { dispatch } = useContext(OrderContext) ?? {}
 
@@ -40,7 +39,6 @@ export const SocketProvider = ({ children }: Props) => {
   useEffect(() => {
     socket?.on(SOCKETS_EVENTS.ORDERS_LIST, (usuarios: OrderI[]) => {
       if (!dispatch) return
-
       dispatch({
         type: SOCKETS_EVENTS.ORDERS_LIST,
         payload: usuarios

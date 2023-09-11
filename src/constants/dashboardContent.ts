@@ -12,6 +12,9 @@ export const DASHBOARD_CONTENT = {
     },
     modify: {
       title: 'Modificación de pedidos'
+    },
+    detail: {
+      title: 'Detalle del pedido'
     }
   },
   flavours: {
@@ -27,7 +30,7 @@ export const DASHBOARD_CONTENT = {
       title: 'Modificación de sabores'
     }
   },
-  menus: {
-    default: { title: 'Lista de menus' }
+  reports: {
+    order: { title: 'Lista de ventas diarias' }
   }
 }

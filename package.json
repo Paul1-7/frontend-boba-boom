@@ -15,6 +15,8 @@
     "@tanstack/react-query": "^4.33.0",
     "@types/node": "^20.4.10",
     "axios": "^1.5.0",
+    "date-fns": "^2.30.0",
+    "deep-clone": "^4.0.0",
     "framer-motion": "^10.15.1",
     "just-compare": "^2.3.0",
     "react": "^18.2.0",

@@ -1,3 +1,5 @@
+import { format } from 'date-fns'
+
 export function isActivePathname(currentPath: string, targetPath: string) {
   const pathnameArray = currentPath.split('/')
   const lastsegmentPath = pathnameArray[pathnameArray.length - 1]
@@ -61,4 +63,42 @@ export function groupArrayElements(arr: string[]): GroupedObject {
 
     return result
   }, {} as GroupedObject)
+}
+
+export const formatTime = (date: string) => {
+  return format(new Date(date), 'HH:mm')
+}
+
+export function getStartOfDay(date: Date) {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    0,
+    0,
+    0,
+    0
+  )
+}
+
+export function getEndOfDay(date: Date) {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    23,
+    59,
+    59,
+    999
+  )
+}
+
+export function sumByKey<T>(array: T[], key: keyof T): number {
+  let totalSum = 0
+
+  array.forEach((obj) => {
+    totalSum += obj[key] as unknown as number
+  })
+
+  return totalSum
 }

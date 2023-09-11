@@ -2,9 +2,11 @@ import { z } from 'zod'
 
 const OrderI = z.object({
   id: z.string().optional(),
-  customer: z.string({
-    required_error: 'El campo del cliente es obligatorio.'
-  }),
+  customer: z
+    .string({
+      required_error: 'El campo del cliente es obligatorio.'
+    })
+    .min(1, { message: 'El campo del cliente es obligatorio' }),
   total: z
     .number({
       coerce: true,
@@ -15,11 +17,10 @@ const OrderI = z.object({
 
 const BobaOrderDetailI = z.object({
   idOrder: z.string().optional(),
-  idShake: z.set(z.string({ required_error: 'requerido' })),
-  idMenu: z
-    .string()
-    .min(1, { message: 'El campo del menú es obligatorio.' })
-    .optional(),
+  idShake: z
+    .set(z.string({ required_error: 'requerido' }))
+    .min(1, 'El sabor de la malteada es requerido'),
+  idMenu: z.string().optional(),
   idBoba: z
     .set(z.string({ required_error: 'requerido' }))
     .min(1, { message: 'Tiene que seleccionar al menos un sabor' })
@@ -34,10 +35,7 @@ const WaffleOrderDetailI = z.object({
   idFruit: z
     .set(z.string({ required_error: 'requerido' }))
     .min(1, { message: 'Tiene que seleccionar una fruta' }),
-  idMenu: z
-    .string()
-    .min(1, { message: 'El campo del menú es obligatorio.' })
-    .optional(),
+  idMenu: z.string().optional(),
   idCoating: z
     .set(z.string({ required_error: 'requerido' }))
     .min(1, { message: 'Tiene que seleccionar una cubierta' }),

@@ -8,7 +8,8 @@ import {
   DefaultCell,
   ActionCellProps,
   ActionCell,
-} from "@/components";
+  TimeCell
+} from '@/components'
 
 export const renderStrategies: Record<
   DataTableRenderStrategy,
@@ -16,16 +17,18 @@ export const renderStrategies: Record<
   RenderStrategy<any>
 > = {
   default: {
-    render: (props: CellProps) => <DefaultCell {...props} />,
+    render: (props: CellProps) => <DefaultCell {...props} />
+  },
+  time: {
+    render: (props: CellProps) => <TimeCell {...props} />
   },
   currency: {
-    render: (props: CellProps) => <CurrencyCell {...props} />,
+    render: (props: CellProps) => <CurrencyCell {...props} />
   },
   states: {
-    render: (props: StateCellProps) => <StateCell {...props} />,
+    render: (props: StateCellProps) => <StateCell {...props} />
   },
   actions: {
-    render: (props: ActionCellProps) => <ActionCell {...props} />,
-  },
-  
-};
+    render: (props: ActionCellProps) => <ActionCell {...props} />
+  }
+}

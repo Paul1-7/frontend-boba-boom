@@ -2,19 +2,37 @@ export interface OrderI {
   id?: string
   customer: string
   total: number
+  state: string
 }
 
-export interface OrderDetailI {
+interface OrderDetailI {
   idOrder?: string
-  idFlavour: string
   idMenu: string
-  subtotal: number
+  idPrice: Set<string> | string
+}
+
+export interface BobaOrderDetail extends OrderDetailI {
+  idShake: Set<string>
+  idBoba?: Set<string>
+}
+
+interface BobasOrderDetail extends OrderDetailI {
+  idShake: string
+  idBoba1?: string
+  idBoba2?: string
+  idBoba3?: string
+}
+
+interface WaffleeOrderDetail extends OrderDetailI {
+  idFruit: Set<string>
+  idCoating: Set<string>
+  idTopping: Set<string>
 }
 
 export interface OrderWithDetails {
   order: OrderI
-  bobaDetail: OrderDetailI[],
-  waffleeDetail: OrderDetailI[],
+  bobaDetail: BobaOrderDetail[] | BobasOrderDetail[]
+  waffleeDetail: WaffleeOrderDetail[]
 }
 
 export interface FlavourI {
@@ -44,4 +62,30 @@ export type OrderStateReducer = {
 export type OrderActionReducer = {
   type: string
   payload: OrderI | OrderI[]
+}
+
+interface FlavourById {
+  id: string
+  name: string
+  price: number
+}
+
+interface BobaById {
+  idPrice: string
+  boba1Flavour: FlavourById
+  boba2Flavour: FlavourById
+  boba3Flavour: FlavourById
+  shakeFlavour: FlavourById
+}
+
+interface WaffleeById {
+  idPrice: string
+  fruitFlavour: FlavourById
+  coatingFlavour: FlavourById
+  toppingFlavour: FlavourById
+}
+
+export interface OrderById extends OrderI {
+  bobasDetail: BobaById[]
+  waffleesDetail: WaffleeById[]
 }

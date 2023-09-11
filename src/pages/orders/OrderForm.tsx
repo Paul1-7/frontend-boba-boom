@@ -3,7 +3,7 @@ import { ROUTES } from '@/constants'
 import { Accordion, AccordionItem, Button, Divider } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
 import { MenuBoba } from '..'
-import { useCounterOrder } from '@/hooks'
+import { useOrder } from '@/hooks'
 import { UseQueryResult } from '@tanstack/react-query'
 import { FlavourI, PriceMenuI } from '@/index'
 import MenuWafflee from './MenuWaffle'
@@ -15,9 +15,17 @@ interface Props {
   priceMenu: UseQueryResult<PriceMenuI[], unknown>
   isLoading: boolean
   isLoadingData?: boolean
+  counterBoba?: number
+  counterWafflee?: number
 }
 
-const FlavourForm = ({ isLoading, flavours, priceMenu }: Props) => {
+const FlavourForm = ({
+  isLoading,
+  flavours,
+  priceMenu,
+  counterBoba,
+  counterWafflee
+}: Props) => {
   const { watch } = useFormContext()
   const total = watch('order.total')
 
@@ -34,9 +42,11 @@ const FlavourForm = ({ isLoading, flavours, priceMenu }: Props) => {
     handleIncrementWafflee,
     toppingFlavours,
     waffleePrices
-  } = useCounterOrder({
+  } = useOrder({
     flavoursData: flavours,
-    priceMenuData: priceMenu
+    priceMenuData: priceMenu,
+    counterBoba,
+    counterWafflee
   })
 
   return (
@@ -98,7 +108,7 @@ const FlavourForm = ({ isLoading, flavours, priceMenu }: Props) => {
         total
       )}`}</p>
       <div className="flex flow-row gap-2 justify-center mt-4">
-        <Button color="warning" as={Link} to={ROUTES.flavours.default}>
+        <Button color="warning" as={Link} to={ROUTES.orders.default}>
           Cancelar
         </Button>
         <Button color="success" isLoading={isLoading} type="submit">

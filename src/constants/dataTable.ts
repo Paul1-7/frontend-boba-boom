@@ -1,23 +1,49 @@
 import { DataTableColumnsMapping } from '@/components'
+import { OrderStates } from '.'
 
 export const COLUMNS_DATA_TABLE: DataTableColumnsMapping = {
   orders: [
     {
-      field: 'nombre',
-      header: 'Nombre',
-      type: 'currency'
+      field: 'customer',
+      header: 'Cliente',
+      type: 'default'
     },
     {
       field: 'total',
-      header: 'total',
+      header: 'Total',
+      type: 'currency'
+    },
+    {
+      field: 'createdAt',
+      header: 'Hora del pedido',
+      type: 'time'
+    },
+    {
+      field: 'state',
+      header: 'Estado',
       type: 'states'
+    },
+    {
+      field: 'id',
+      header: 'Acciones',
+      type: 'actions'
     }
   ],
-  menus: [
+  reports: [
     {
-      field: 'nombre',
-      header: 'Nombre',
+      field: 'customer',
+      header: 'Cliente',
       type: 'default'
+    },
+    {
+      field: 'total',
+      header: 'Total',
+      type: 'currency'
+    },
+    {
+      field: 'createdAt',
+      header: 'Hora del pedido',
+      type: 'time'
     }
   ],
   flavours: [
@@ -43,14 +69,15 @@ export const COLUMNS_DATA_TABLE: DataTableColumnsMapping = {
     }
   ]
 }
-
+const { CANCEL, COMPLETE, IN_PREPARATION, MODIFY, ON_STANDBY } = OrderStates
 export const TABLE_STATES = {
-  order: [
-    { name: 'Pendiente', color: 'warning' },
-    { name: 'En preparacion', color: 'primary' },
-    { name: 'Preparado', color: 'primary' },
-    { name: 'Completado', color: 'success' }
-  ],
+  order: {
+    [ON_STANDBY]: { name: ON_STANDBY, color: 'default' },
+    [IN_PREPARATION]: { name: IN_PREPARATION, color: 'default' },
+    [COMPLETE]: { name: COMPLETE, color: 'success' },
+    [MODIFY]: { name: MODIFY, color: 'warning' },
+    [CANCEL]: { name: CANCEL, color: 'danger' }
+  },
   flavoursType: {
     FRUTALES: {
       name: 'FRUTALES',

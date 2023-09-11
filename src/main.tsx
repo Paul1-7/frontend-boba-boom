@@ -13,6 +13,9 @@ const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
       retry: false
+    },
+    queries: {
+      cacheTime: 0
     }
   }
 })

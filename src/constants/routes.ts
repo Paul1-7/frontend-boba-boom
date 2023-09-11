@@ -7,10 +7,8 @@ export const ROUTES = {
     modify: DASHBOARD_ROUTE + '/pedidos/modificar',
     detail: DASHBOARD_ROUTE + '/pedidos/detalle'
   },
-  menus: {
-    default: DASHBOARD_ROUTE + '/menus',
-    create: DASHBOARD_ROUTE + '/menus/agregar',
-    modify: DASHBOARD_ROUTE + '/menus/modificar'
+  reports: {
+    order: DASHBOARD_ROUTE + '/reportes/ventas'
   },
   flavours: {
     default: DASHBOARD_ROUTE + '/sabores',

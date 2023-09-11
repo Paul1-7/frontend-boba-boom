@@ -25,10 +25,18 @@ const WAFFLEES_MENU_ID = '369bf017-c1e5-4e5c-98ae-1185b21e53bf'
 interface Props {
   flavoursData: UseQueryResult<FlavourI[], unknown>
   priceMenuData: UseQueryResult<PriceMenuI[], unknown>
+  counterBoba?: number
+  counterWafflee?: number
 }
 
-export const useCounterOrder = ({ flavoursData, priceMenuData }: Props) => {
+export const useOrder = ({
+  flavoursData,
+  priceMenuData,
+  counterBoba,
+  counterWafflee
+}: Props) => {
   const [counters, setCounters] = useState(initialState)
+  const [total, setTotal] = useState(0)
   const { control, watch, setValue } = useFormContext()
   const { FRUTALES, ESPECIALES, DE_LA_CASA, CUBIERTA, TOPPING } = Types
   const watchedValues = watch()
@@ -36,7 +44,20 @@ export const useCounterOrder = ({ flavoursData, priceMenuData }: Props) => {
   const idPrices = useRef<string[]>([])
 
   useEffect(() => {
-    if (!flavoursData.data || !priceMenuData.data) return
+    if (counterBoba) {
+      setCounters((prev) => ({ ...prev, bobaBoos: counterBoba }))
+    }
+
+    if (counterWafflee) {
+      setCounters((prev) => ({ ...prev, bobaWaffles: counterWafflee }))
+    }
+  }, [counterWafflee, counterBoba])
+
+  useEffect(() => {
+    if (!flavoursData.data || !priceMenuData.data) {
+      return
+    }
+
     idPrices.current = []
     idFlavours.current = []
     watchedValues.waffleeDetail.forEach(
@@ -75,8 +96,12 @@ export const useCounterOrder = ({ flavoursData, priceMenuData }: Props) => {
       totalPriceMenu += foundedPriceMenu?.price ?? 0
     })
 
-    setValue('order.total', totalPriceMenu + totalPriceFlavour)
+    setTotal(totalPriceMenu + totalPriceFlavour)
   }, [watchedValues])
+
+  useEffect(() => {
+    setValue('order.total', total)
+  }, [total])
 
   const bobaFieldArray = useFieldArray({
     control,

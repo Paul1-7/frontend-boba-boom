@@ -27,7 +27,8 @@ export const initialFormWaffleeOrder = {
 export const initialFormOrder: OrderWithDetails = {
   order: {
     customer: '',
-    total: 0
+    total: 0,
+    state: ''
   },
   bobaDetail: [],
   waffleeDetail: []
