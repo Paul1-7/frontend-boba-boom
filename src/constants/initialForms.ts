@@ -33,3 +33,10 @@ export const initialFormOrder: OrderWithDetails = {
   bobaDetail: [],
   waffleeDetail: []
 }
+
+export const initialFormUser = {
+  user: '',
+  password: '',
+  repeatPassword: '',
+  idRol: new Set()
+}

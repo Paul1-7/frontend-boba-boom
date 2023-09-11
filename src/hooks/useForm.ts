@@ -35,8 +35,11 @@ export const useForm = ({
       !loadOnce.current
     )
       return
-    console.log(dataTarget?.data)
-    methods.reset(dataTarget?.data)
+    methods.reset(dataTarget?.data, {
+      keepErrors: true,
+      keepIsValid: true,
+      keepDefaultValues: true
+    })
     loadOnce.current = false
   }, [dataTarget?.data, onDataLoad, shouldLoadData])
 

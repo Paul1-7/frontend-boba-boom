@@ -67,6 +67,23 @@ export const COLUMNS_DATA_TABLE: DataTableColumnsMapping = {
       header: 'Acciones',
       type: 'actions'
     }
+  ],
+  users: [
+    {
+      field: 'user',
+      header: 'Usuario',
+      type: 'default'
+    },
+    {
+      field: 'rol',
+      header: 'Rol',
+      type: 'default'
+    },
+    {
+      field: 'id',
+      header: 'Acciones',
+      type: 'actions'
+    }
   ]
 }
 const { CANCEL, COMPLETE, IN_PREPARATION, MODIFY, ON_STANDBY } = OrderStates

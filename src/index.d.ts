@@ -89,3 +89,19 @@ export interface OrderById extends OrderI {
   bobasDetail: BobaById[]
   waffleesDetail: WaffleeById[]
 }
+
+interface UserI {
+  id: string
+  user: string
+  password: string
+  idRol: string | Set
+}
+
+interface RolI {
+  id: string
+  name: string
+}
+
+interface UserList extends UserI {
+  rol: RolI
+}

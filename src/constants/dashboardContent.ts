@@ -30,6 +30,19 @@ export const DASHBOARD_CONTENT = {
       title: 'Modificación de sabores'
     }
   },
+  users: {
+    default: {
+      title: 'Lista de usuarios',
+      button: 'agregar usuario',
+      to: ROUTES.users.create
+    },
+    add: {
+      title: 'Creación de usuarios'
+    },
+    modify: {
+      title: 'Modificación del usuario'
+    }
+  },
   reports: {
     order: { title: 'Lista de ventas diarias' }
   }
