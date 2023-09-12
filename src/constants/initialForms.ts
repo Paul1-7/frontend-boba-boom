@@ -40,3 +40,8 @@ export const initialFormUser = {
   repeatPassword: '',
   idRol: new Set()
 }
+
+export const initialFormLogin = {
+  user: '',
+  password: ''
+}

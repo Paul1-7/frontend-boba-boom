@@ -40,4 +40,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+
+  .bg-login {
+    background-image: url(./assets/img/bgLogin.webp);
+    background-size: contain;
+  }
 }

@@ -1,6 +1,6 @@
-import { DASHBOARD_ROUTE, ROUTES } from '@/constants'
+import { DASHBOARD_ROUTE, ROLES, ROUTES } from '@/constants'
 import DashboardLayout from '@/layout/dashboard/DashboardLayout'
-import { RoutesWithNotFound } from '@/pages'
+import { RequireAuth, RoutesWithNotFound } from '@/pages'
 import { lazy } from 'react'
 import { Navigate, Route } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ const OrderAdd = lazy(() => import('@/pages/orders/OrderAdd'))
 const OrderModify = lazy(() => import('@/pages/orders/OrderModify'))
 const OrderDetail = lazy(() => import('@/pages/orders/OrderDetail'))
 const Sales = lazy(() => import('@/pages/reports/SalesReport'))
+const Login = lazy(() => import('@/pages/auth/Login'))
 
 //flavours
 const Flavours = lazy(() => import('@/pages/flavours/Flavours'))
@@ -20,29 +21,102 @@ const Users = lazy(() => import('@/pages/users/Users'))
 const UserAdd = lazy(() => import('@/pages/users/UserAdd'))
 const UserModify = lazy(() => import('@/pages/users/UserModify'))
 
+const { ADMIN, CAMARERO, RECEPCIONISTA_ORDENES } = ROLES
 const MainRoutes = () => {
   return (
     <RoutesWithNotFound>
       <Route path="/" element={<Navigate to={`${ROUTES.orders.default}`} />} />
       <Route path={DASHBOARD_ROUTE} element={<DashboardLayout />}>
-        <Route path={ROUTES.orders.default} element={<Orders />} />
-        <Route path={ROUTES.orders.create} element={<OrderAdd />} />
-        <Route path={ROUTES.orders.modify + '/:id'} element={<OrderModify />} />
-        <Route path={ROUTES.orders.detail + '/:id'} element={<OrderDetail />} />
-        <Route path={ROUTES.reports.order} element={<Sales />} />
-        {/* flavours */}
-
-        <Route path={ROUTES.flavours.default} element={<Flavours />} />
-        <Route path={ROUTES.flavours.create} element={<FlavourAdd />} />
+        <Route
+          path={ROUTES.orders.default}
+          element={
+            <RequireAuth allowedRols={[ADMIN, CAMARERO, RECEPCIONISTA_ORDENES]}>
+              <Orders />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.orders.create}
+          element={
+            <RequireAuth allowedRols={[ADMIN, CAMARERO]}>
+              <OrderAdd />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.orders.modify + '/:id'}
+          element={
+            <RequireAuth allowedRols={[ADMIN, CAMARERO]}>
+              <OrderModify />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.orders.detail + '/:id'}
+          element={
+            <RequireAuth allowedRols={[ADMIN, CAMARERO, RECEPCIONISTA_ORDENES]}>
+              <OrderDetail />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.reports.order}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <Sales />{' '}
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.flavours.default}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <Flavours />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.flavours.create}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <FlavourAdd />
+            </RequireAuth>
+          }
+        />
         <Route
           path={ROUTES.flavours.modify + '/:id'}
-          element={<FlavourModify />}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <FlavourModify />
+            </RequireAuth>
+          }
         />
-
-        <Route path={ROUTES.users.default} element={<Users />} />
-        <Route path={ROUTES.users.create} element={<UserAdd />} />
-        <Route path={ROUTES.users.modify + '/:id'} element={<UserModify />} />
+        <Route
+          path={ROUTES.users.default}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <Users />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.users.create}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <UserAdd />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.users.modify + '/:id'}
+          element={
+            <RequireAuth allowedRols={[ADMIN]}>
+              <UserModify />
+            </RequireAuth>
+          }
+        />
       </Route>
+      <Route path={ROUTES.auth.login} element={<Login />} />
     </RoutesWithNotFound>
   )
 }

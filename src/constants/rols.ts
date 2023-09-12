@@ -1,0 +1,5 @@
+export enum ROLES {
+  CAMARERO = 'a3a8446c-eb67-4472-9ea5-2dcc9dc80c22',
+  RECEPCIONISTA_ORDENES = '7f746fc1-aaac-4e45-b27c-43df201299f3',
+  ADMIN = 'ca2b7744-0401-4d1e-9173-30f74b568e7d'
+}

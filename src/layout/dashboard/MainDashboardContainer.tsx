@@ -1,10 +1,15 @@
+import { useAuth } from '@/hooks'
 import { Button } from '@nextui-org/react'
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 interface Content {
   title: string
-  button?: string
+  button?: {
+    text: string
+    to: string
+    allowedRols: string[]
+  }
   to?: string
 }
 
@@ -14,21 +19,22 @@ interface Props {
 }
 
 const MainDashboardContainer = ({ content, children }: Props) => {
-  const { title, button, to } = content
+  const { isAllowedRol } = useAuth() ?? {}
+  const { title, button } = content
   return (
     <div className="p-2 sm:p-8">
       <h1 className="pb-8 text-4xl font-semibold">{title}</h1>
-      {button && (
+      {button && isAllowedRol(button?.allowedRols) && (
         <div className="w-full pb-8">
           <Button
             color="secondary"
             variant="shadow"
             className="text-medium capitalize"
             as={Link}
-            to={to ?? ''}
+            to={button.to}
             relative="path"
           >
-            {button}
+            {button.text}
           </Button>
         </div>
       )}

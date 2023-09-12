@@ -1,11 +1,14 @@
-import { ROUTES } from '.'
-
+import { ROLES, ROUTES } from '.'
+const { ADMIN, CAMARERO } = ROLES
 export const DASHBOARD_CONTENT = {
   orders: {
     default: {
       title: 'Lista de pedidos',
-      button: 'agregar pedido',
-      to: ROUTES.orders.create
+      button: {
+        text: 'agregar pedido',
+        allowedRols: [ADMIN, CAMARERO],
+        to: ROUTES.orders.create
+      }
     },
     add: {
       title: 'Creación de pedidos'
@@ -20,8 +23,11 @@ export const DASHBOARD_CONTENT = {
   flavours: {
     default: {
       title: 'Lista de sabores',
-      button: 'agregar sabor',
-      to: ROUTES.flavours.create
+      button: {
+        text: 'agregar sabor',
+        allowedRols: [ADMIN],
+        to: ROUTES.flavours.create
+      }
     },
     add: {
       title: 'Creación de sabores'
@@ -33,8 +39,11 @@ export const DASHBOARD_CONTENT = {
   users: {
     default: {
       title: 'Lista de usuarios',
-      button: 'agregar usuario',
-      to: ROUTES.users.create
+      button: {
+        text: 'agregar usuario',
+        allowedRols: [ADMIN],
+        to: ROUTES.users.create
+      }
     },
     add: {
       title: 'Creación de usuarios'

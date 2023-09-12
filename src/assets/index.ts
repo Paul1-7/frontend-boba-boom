@@ -1,4 +1,6 @@
-export { default as MenuIc } from "./icons/MenuIc";
-export { default as OrderIc } from "./icons/OrderIc";
-export { default as UsersIc } from "./icons/UsersIc";
-export * from "./icons";
+export { default as MenuIc } from './icons/MenuIc'
+export { default as OrderIc } from './icons/OrderIc'
+export { default as UsersIc } from './icons/UsersIc'
+export * from './icons'
+export { default as bgLogin } from './img/bgLogin.webp'
+export { default as userImg } from './img/user.webp'

@@ -102,6 +102,6 @@ interface RolI {
   name: string
 }
 
-interface UserList extends UserI {
+interface UserAndRol extends UserI {
   rol: RolI
 }

@@ -21,6 +21,7 @@ export const ROUTES = {
     modify: DASHBOARD_ROUTE + '/usuarios/modificar'
   },
   auth: {
-    login: DASHBOARD_ROUTE + '/auth/login'
+    login: '/auth/login',
+    unauthorised: '/unauthorised'
   }
 }
