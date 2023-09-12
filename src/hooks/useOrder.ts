@@ -85,7 +85,7 @@ export const useOrder = ({
     Object.entries(idFlavourGroup).forEach(([key, value]) => {
       const foundedFlavour = flavoursData.data.find(({ id }) => id === key)
 
-      totalPriceFlavour += (Number(foundedFlavour?.price) ?? 0) * value.count
+      totalPriceFlavour += Number(foundedFlavour?.price ?? 0) * value.count
     })
 
     idMenuPriceFlat.forEach((idMenuPrice) => {

@@ -38,7 +38,11 @@ const FlavourModify = () => {
   })
 
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
-    mutate(data as FlavourI)
+    mutate({
+      ...(data as FlavourI),
+      idMenu: [...data.idMenu][0],
+      type: [...data.type][0]
+    })
   }
 
   return (

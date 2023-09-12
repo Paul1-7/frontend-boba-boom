@@ -2,9 +2,10 @@ import { MenuItem as MenuItemI } from '@/constants'
 import { Card } from '@nextui-org/react'
 import { useLocation } from 'react-router-dom'
 import MenuItem from './MenuItem.tsx'
-import { isActivePathname } from '@/utils'
+import { getAllowedMenus, isActivePathname } from '@/utils'
 import { motion } from 'framer-motion'
 import CardInfo from './CardInfo.tsx'
+import useAuth from '@/hooks/useAuth.ts'
 
 interface Props {
   menuItems: MenuItemI[]
@@ -14,6 +15,8 @@ interface Props {
 
 const Sidebar = ({ menuItems, isMenuOpen, matchedBreakpoint }: Props) => {
   const { pathname } = useLocation()
+  const { authenticated } = useAuth() ?? {}
+  const allowedMenus = getAllowedMenus(menuItems, authenticated?.rol?.id)
 
   return (
     <motion.aside
@@ -27,7 +30,7 @@ const Sidebar = ({ menuItems, isMenuOpen, matchedBreakpoint }: Props) => {
       >
         <CardInfo />
 
-        {menuItems.map((menuItem) => {
+        {allowedMenus.map((menuItem) => {
           const isActive = isActivePathname(pathname, menuItem.path)
           return (
             <MenuItem

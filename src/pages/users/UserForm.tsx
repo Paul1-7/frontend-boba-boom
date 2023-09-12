@@ -18,8 +18,12 @@ const FlavourForm = ({ isLoading, rols = [] }: Props) => {
           <Select label="Selecciona un rol" name={'idRol'} items={rols} />
         </div>
         <div className="flex w-full flex-wrap sm:flex-nowrap mb-6 sm:mb-0 gap-4">
-          <Input label="Contraseña" name={'password'} />
-          <Input label="Repetir contraseña" name={'repeatPassword'} />
+          <Input label="Contraseña" name={'password'} type="password" />
+          <Input
+            label="Repetir contraseña"
+            name={'repeatPassword'}
+            type="password"
+          />
         </div>
       </div>
       <div className="flex flow-row gap-2 justify-center mt-4">

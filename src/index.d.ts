@@ -37,9 +37,9 @@ export interface OrderWithDetails {
 
 export interface FlavourI {
   id?: string
-  type: string
+  type: string | Set
   name: string
-  idMenu: string
+  idMenu: string | Set
   price: number | string
 }
 

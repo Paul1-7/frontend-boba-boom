@@ -1,9 +1,9 @@
 import { FlavourI, OrderWithDetails } from '..'
 
 export const initialFormFlavour: FlavourI = {
-  type: '',
+  type: new Set(),
   name: '',
-  idMenu: '',
+  idMenu: new Set(),
   price: 0
 }
 

@@ -8,3 +8,11 @@ export const flavourListItems = (flavours: FlavourI[]): Item<FlavourI>[] => {
     customValues: flavour
   }))
 }
+
+export const getFlavourToModify = (data: FlavourI): FlavourI => {
+  return {
+    ...data,
+    idMenu: new Set([data.idMenu]),
+    type: new Set([data.type])
+  }
+}

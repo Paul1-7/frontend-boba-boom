@@ -1,3 +1,4 @@
+import { MenuItem } from '@/constants'
 import { format } from 'date-fns'
 
 export function isActivePathname(currentPath: string, targetPath: string) {
@@ -101,4 +102,11 @@ export function sumByKey<T>(array: T[], key: keyof T): number {
   })
 
   return totalSum
+}
+
+export function getAllowedMenus(
+  menuItems: MenuItem[],
+  allowedRol: string = ''
+): MenuItem[] {
+  return menuItems.filter(({ allowedRols }) => allowedRols.includes(allowedRol))
 }

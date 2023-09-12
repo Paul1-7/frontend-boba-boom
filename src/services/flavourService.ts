@@ -1,4 +1,4 @@
-import { Axios } from '@/apis'
+import { Axios, getFlavourToModify } from '@/apis'
 import { FlavourI } from '..'
 export const URL_FLAVOURS = {
   default: '/api/v1/flavours'
@@ -29,7 +29,7 @@ export const getFlavourById = async (
   const response = await Axios.get<Data<FlavourI>>(
     `${URL_FLAVOURS.default}/${id}`
   )
-  return response.data.data
+  return getFlavourToModify(response.data.data)
 }
 
 export const modifyFlavour = async (

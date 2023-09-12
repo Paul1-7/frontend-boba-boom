@@ -33,7 +33,6 @@ const UserModify = () => {
     dataTarget: userData,
     onDataLoad: [userData, rolsData]
   })
-  console.log('TCL: UserModify -> methods', methods.formState.errors)
 
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
     mutate({ ...(data as UserI), idRol: [...data.idRol][0] })

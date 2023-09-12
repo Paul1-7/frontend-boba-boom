@@ -65,7 +65,7 @@ const FlavourForm = ({
           as={'section'}
           key="1"
           aria-label="Accordion 1"
-          title="Boba boo"
+          title="Bobas"
           startContent={
             <CounterButton
               handleDecrement={handleDecrementBobas}
@@ -85,7 +85,7 @@ const FlavourForm = ({
           as={'section'}
           key="2"
           aria-label="Seccion para menu wafflee"
-          title="Boba wafflee"
+          title="Wafflee"
           startContent={
             <CounterButton
               handleDecrement={handleDecrementWafflee}
