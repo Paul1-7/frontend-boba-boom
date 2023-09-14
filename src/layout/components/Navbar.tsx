@@ -17,7 +17,7 @@ import { useAuth } from '@/hooks'
 interface Props {
   menuItems: MenuItemI[]
   isMenuOpen: boolean
-  handleOpen: (value: boolean) => void
+  handleOpen: () => void
   matchedBreakpoint: boolean
 }
 
@@ -44,7 +44,7 @@ export default function Navbar({
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className=" md:flex">
+        <NavbarItem>
           <Button onClick={logout} color="secondary">
             Cerrar sesion
           </Button>
@@ -55,7 +55,15 @@ export default function Navbar({
           const isActive = isActivePathname(pathname, menuItem.path)
           return (
             <NavbarMenuItem key={`${menuItem.name}`}>
-              <MenuItem menuItem={menuItem} isActive={isActive} />
+              <MenuItem
+                menuItem={menuItem}
+                isActive={isActive}
+                linkProps={{
+                  onClick: () => {
+                    handleOpen()
+                  }
+                }}
+              />
             </NavbarMenuItem>
           )
         })}

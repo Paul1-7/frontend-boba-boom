@@ -1,6 +1,6 @@
-import { UserI, UserList } from '@/index'
+import { UserI, UserAndRol } from '@/index'
 
-export const userList = (data: UserList[]) => {
+export const userList = (data: UserAndRol[]) => {
   return data.map(({ id, user, rol }) => ({
     id,
     user,

@@ -8,6 +8,7 @@ import { Toaster } from 'sonner'
 import { SocketProvider } from './context/SocketContext.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { OrderProvider } from './context/OrdersContext.tsx'
+import { NotificationProvider } from './context/NotificationContext.tsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,10 +27,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <NextUIProvider>
         <OrderProvider>
           <SocketProvider>
-            <QueryClientProvider client={queryClient}>
-              <Toaster richColors visibleToasts={1} />
-              <App />
-            </QueryClientProvider>
+            <NotificationProvider>
+              <QueryClientProvider client={queryClient}>
+                <Toaster richColors visibleToasts={1} />
+                <App />
+              </QueryClientProvider>
+            </NotificationProvider>
           </SocketProvider>
         </OrderProvider>
       </NextUIProvider>

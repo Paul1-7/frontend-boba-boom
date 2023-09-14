@@ -11,6 +11,7 @@ interface Props {
   menuItems: MenuItemI[]
   isMenuOpen: boolean
   matchedBreakpoint: boolean
+  handleOpen?: () => void
 }
 
 const Sidebar = ({ menuItems, isMenuOpen, matchedBreakpoint }: Props) => {
@@ -28,7 +29,7 @@ const Sidebar = ({ menuItems, isMenuOpen, matchedBreakpoint }: Props) => {
       <Card
         className={`bg-primary-blur h-full w-full flex-col gap-2   rounded-none px-3 py-8`}
       >
-        <CardInfo />
+        <CardInfo isMenuOpen={isMenuOpen} />
 
         {allowedMenus.map((menuItem) => {
           const isActive = isActivePathname(pathname, menuItem.path)

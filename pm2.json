@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "args": "serve -p 8443 -T",
+      "interpreter": "none",
+      "name": "bobaboom-frontend",
+      "script": "npx"
+    }
+  ]
+}

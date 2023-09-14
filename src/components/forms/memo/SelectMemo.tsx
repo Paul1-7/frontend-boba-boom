@@ -27,8 +27,6 @@ const SelectMemo = memo(
       onChange: (...event: any[]) => void,
       selectionMode: SelectionMode | undefined
     ) => {
-      console.log(e.target.value)
-
       const value = selectionMode
         ? new Set(e.target.value.split(','))
         : new Set([e.target.value])

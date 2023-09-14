@@ -35,11 +35,12 @@ const DashboardLayout = ({ children }: Props) => {
       <section className="fixed left-0 right-0 top-0 mt-16 flex">
         <Sidebar
           menuItems={MENU_ITEMS_DASHBOARD}
+          handleOpen={handleOpen}
           isMenuOpen={isMenuOpen}
           matchedBreakpoint={matchedBreakpoint}
         />
 
-        <main className="scroll flex-grow overflow-y-auto max-h-screen-navbar">
+        <main className="scroll flex-grow overflow-y-auto max-h-screen-navbar h-screen-navbar">
           <Suspense
             fallback={
               <Progress

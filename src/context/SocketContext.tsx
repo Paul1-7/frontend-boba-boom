@@ -1,6 +1,5 @@
 import { ReactNode, useContext, useEffect } from 'react'
 import { createContext } from 'react'
-
 import { useSockets } from '@/hooks'
 import { BASE_URL } from '@/config'
 import { SOCKETS_EVENTS } from '@/constants'
@@ -18,32 +17,40 @@ export const SocketContext = createContext<ContextProps | null>(null)
 interface Props {
   children: ReactNode
 }
+
+interface Notification {
+  title: string
+  body: string
+}
+
 export const SocketProvider = ({ children }: Props) => {
   const { socket, online } = useSockets(BASE_URL)
-  // const { auth } = useContext(AuthContext);
   const { dispatch } = useContext(OrderContext) ?? {}
 
-  // useEffect(() => {
-  //   if (auth.logged) {
-  //     conectarSocket();
-  //   }
-  // }, [auth, conectarSocket]);
-
-  // useEffect(() => {
-  //   if (!auth.logged) {
-  //     desconectarSocket();
-  //   }
-  // }, [auth, desconectarSocket]);
-
-  // Escuchar los cambios en los usuarios conectados
   useEffect(() => {
-    socket?.on(SOCKETS_EVENTS.ORDERS_LIST, (usuarios: OrderI[]) => {
-      if (!dispatch) return
-      dispatch({
-        type: SOCKETS_EVENTS.ORDERS_LIST,
-        payload: usuarios
-      })
-    })
+    socket?.on(
+      SOCKETS_EVENTS.ORDERS_LIST,
+      (usuarios: OrderI[], notification: Notification | undefined) => {
+        if (!dispatch) return
+
+        if (notification) {
+          const noti = new Notification(notification.title, {
+            body: notification.body,
+            silent: false,
+            vibrate: [200, 100, 200]
+          })
+
+          noti.addEventListener('close', (e) => {
+            console.log(e)
+          })
+        }
+
+        dispatch({
+          type: SOCKETS_EVENTS.ORDERS_LIST,
+          payload: usuarios
+        })
+      }
+    )
   }, [socket])
 
   // useEffect(() => {
