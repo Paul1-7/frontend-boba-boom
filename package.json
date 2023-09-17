@@ -1,14 +1,4 @@
 {
-  "name": "frontend-boba-boom",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
     "@nextui-org/react": "^2.1.7",
@@ -46,5 +36,16 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
     "vite-plugin-pwa": "^0.16.5"
-  }
+  },
+  "name": "frontend-boba-boom",
+  "private": true,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "serve-build": "serve -l 8080 -s dist --ssl-cert server-cert.pem --ssl-key server-key.pem"
+  },
+  "type": "module",
+  "version": "0.0.0"
 }

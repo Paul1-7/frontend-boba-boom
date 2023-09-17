@@ -40,7 +40,7 @@ const DashboardLayout = ({ children }: Props) => {
           matchedBreakpoint={matchedBreakpoint}
         />
 
-        <main className="scroll flex-grow overflow-y-auto max-h-screen-navbar h-screen-navbar">
+        <main className="scroll flex-grow overflow-y-auto max-h-screen-navbar h-screen-navbar pb-6">
           <Suspense
             fallback={
               <Progress

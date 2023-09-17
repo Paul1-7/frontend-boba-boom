@@ -1,5 +1,6 @@
 export * from './flavourService'
 export * from './menuService'
+export * from './notificationService'
 export * from './orderService'
 export * from './priceMenuService'
 export * from './rolService'

@@ -1,3 +1,5 @@
+import { useAuth } from '@/hooks'
+import { subscribeToPushNotifications } from '@/services'
 import {
   createContext,
   useState,
@@ -26,6 +28,7 @@ interface NotificationProviderProps {
 }
 
 export function NotificationProvider({ children }: NotificationProviderProps) {
+  const { authenticated } = useAuth() ?? {}
   const [notificationPermission, setNotificationPermission] =
     useState<NotificationPermissionState>('default')
 
@@ -44,6 +47,12 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
       setNotificationPermission(permission as NotificationPermissionState)
     })
   }
+
+  useEffect(() => {
+    if (!authenticated?.id) return
+
+    subscribeToPushNotifications(authenticated.id)
+  }, [])
 
   return (
     <NotificationContext.Provider
