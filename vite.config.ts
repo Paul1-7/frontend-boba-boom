@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      injectRegister: 'auto',
+      injectRegister: 'script',
       mode: 'production',
       base: '/',
       includeAssets: ['favicon-32x32.png'],
@@ -43,7 +43,7 @@ export default defineConfig({
         ]
       },
       workbox: {
-        swDest: 'src/workers/notifications.js'
+        importScripts: ['workers/notifications.js']
       }
     })
   ],
