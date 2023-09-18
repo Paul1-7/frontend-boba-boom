@@ -12,7 +12,7 @@ export default defineConfig({
       injectRegister: 'script',
       mode: 'production',
       base: '/',
-      includeAssets: ['favicon-32x32.png'],
+      includeAssets: ['favicon.svg', 'favicon-32x32.png'],
       devOptions: {
         enabled: true,
         type: 'module',
@@ -23,6 +23,9 @@ export default defineConfig({
         name: 'BOBA BOO',
         short_name: 'BOBA BOO',
         theme_color: '#ffffff',
+        start_url: '/',
+        scope: '/',
+        lang: 'es',
         icons: [
           {
             src: 'boba-192-192.png', // <== don't add slash, for testing

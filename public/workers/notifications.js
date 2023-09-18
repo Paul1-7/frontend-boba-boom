@@ -1,8 +1,7 @@
 self.addEventListener('push', (e) => {
   const data = e.data.json()
-  console.log(data)
-  console.log('Notification Received')
   self.registration.showNotification(data.title, {
-    body: data.body
+    body: data.body,
+    icon: 'boba-512-512.png'
   })
 })
