@@ -26,6 +26,9 @@
         /* Linting */
         "strict": true,
         "target": "ES2021",
+        "types": [
+            "vite-plugin-pwa/client"
+        ],
         "useDefineForClassFields": true
     },
     "include": [
