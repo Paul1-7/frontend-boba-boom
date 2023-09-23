@@ -11,8 +11,9 @@ import {
 } from '@nextui-org/react'
 import { useLocation } from 'react-router-dom'
 import { MenuItem as MenuItemI } from '@/constants'
-import { isActivePathname } from '@/utils'
+import { getAllowedMenus, isActivePathname } from '@/utils'
 import { useAuth } from '@/hooks'
+import CardInfo from './CardInfo'
 
 interface Props {
   menuItems: MenuItemI[]
@@ -27,15 +28,17 @@ export default function Navbar({
   isMenuOpen,
   matchedBreakpoint
 }: Props) {
-  const { logout } = useAuth() ?? {}
+  const { logout, authenticated } = useAuth() ?? {}
   const { pathname } = useLocation()
   const isOpen = matchedBreakpoint && isMenuOpen
+  const allowedMenus = getAllowedMenus(menuItems, authenticated?.rol?.id)
+  console.log('TCL: allowedMenus', allowedMenus)
 
   return (
     <NavbarNextUI
       onMenuOpenChange={handleOpen}
       isMenuOpen={isOpen}
-      className={'bg-primary-blur justify-between text-whiteDark shadow-md'}
+      className={'bg-primary-blur justify-between text-whiteDark shadow-md '}
     >
       <NavbarContent>
         <NavbarMenuToggle aria-label={isOpen ? 'Close menu' : 'Open menu'} />
@@ -51,7 +54,8 @@ export default function Navbar({
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="bg-primary-blur sm:hidden">
-        {menuItems.map((menuItem) => {
+        <CardInfo isMenuOpen={false} />
+        {allowedMenus.map((menuItem) => {
           const isActive = isActivePathname(pathname, menuItem.path)
           return (
             <NavbarMenuItem key={`${menuItem.name}`}>
