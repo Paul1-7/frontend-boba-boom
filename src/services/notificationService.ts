@@ -25,7 +25,5 @@ export const subscribeToPushNotifications = async (
     idUser
   }
 
-  console.log('TCL: newSubscription', newSubscription)
-
   await Axios.post(PUSH_SUSCRIPTIONS, data)
 }

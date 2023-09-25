@@ -18,39 +18,19 @@ interface Props {
   children: ReactNode
 }
 
-interface Notification {
-  title: string
-  body: string
-}
-
 export const SocketProvider = ({ children }: Props) => {
   const { socket, online } = useSockets(BASE_URL)
   const { dispatch } = useContext(OrderContext) ?? {}
 
   useEffect(() => {
-    socket?.on(
-      SOCKETS_EVENTS.ORDERS_LIST,
-      (usuarios: OrderI[], notification: Notification | undefined) => {
-        if (!dispatch) return
+    socket?.on(SOCKETS_EVENTS.ORDERS_LIST, (usuarios: OrderI[]) => {
+      if (!dispatch) return
 
-        if (notification) {
-          const noti = new Notification(notification.title, {
-            body: notification.body,
-            silent: false,
-            vibrate: [200, 100, 200]
-          })
-
-          noti.addEventListener('close', (e) => {
-            console.log(e)
-          })
-        }
-
-        dispatch({
-          type: SOCKETS_EVENTS.ORDERS_LIST,
-          payload: usuarios
-        })
-      }
-    )
+      dispatch({
+        type: SOCKETS_EVENTS.ORDERS_LIST,
+        payload: usuarios
+      })
+    })
   }, [socket])
 
   // useEffect(() => {

@@ -32,7 +32,6 @@ export default function Navbar({
   const { pathname } = useLocation()
   const isOpen = matchedBreakpoint && isMenuOpen
   const allowedMenus = getAllowedMenus(menuItems, authenticated?.rol?.id)
-  console.log('TCL: allowedMenus', allowedMenus)
 
   return (
     <NavbarNextUI
