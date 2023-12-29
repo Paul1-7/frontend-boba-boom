@@ -1,4 +1,4 @@
-import { Form, Input } from '@/components'
+import { Alert, Form, Input } from '@/components'
 import { ROUTES, initialFormLogin } from '@/constants'
 import { useAuth, useForm } from '@/hooks'
 import { UserAndRol } from '@/index'
@@ -46,6 +46,10 @@ const Login = () => {
             Ingresa tus crendenciales
           </CardHeader>
           <CardBody>
+            <Alert title="Crendenciales" className="mb-4">
+              usuario: admin <br />
+              contraseña: admin
+            </Alert>
             <div className="flex gap-4 flex-col w-full">
               <Input label="Usuario" name="user" required />
               <Input
